@@ -1,9 +1,6 @@
-public class Count implements Runnable{
+public class NumberGenerator extends Thread implements Runnable{
     private Thread myThread;
-    public Count(){
-        myThread = new Thread(this,"my runnable thread");
-        System.out.println("My thread created " + myThread);
-        myThread.start();
+    public NumberGenerator(){
     }
 
     public Thread getMyThread() {
@@ -15,12 +12,19 @@ public class Count implements Runnable{
         try {
             for (int i = 0; i < 10; i++) {
                 System.out.println("Printing the count " + i);
-                Thread.sleep(1000);
+                Thread.sleep(500);
             }
         } catch (InterruptedException i) {
             System.out.println("My thread was interrupted");
         }
         System.out.println("My thread run is over");
+    }
+
+    public void start () {
+        if(myThread==null){
+            myThread=new Thread(this);
+            myThread.start();
+        }
     }
 
 }

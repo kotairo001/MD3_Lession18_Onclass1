@@ -1,14 +1,11 @@
 public class Main {
     public static void main(String[] args) {
-        Count count = new Count();
-        try {
-            while (count.getMyThread().isAlive()){
-                System.out.println("Main thread will be alive till the child thread is live");
-                Thread.sleep(1500);
-            }
-        } catch (InterruptedException i){
-            System.out.println("My thread was interrupted");
-        }
-        System.out.println("Main thread run is over");
+        NumberGenerator numberGenerator1 = new NumberGenerator();
+        NumberGenerator numberGenerator2 = new NumberGenerator();
+        numberGenerator1.setPriority(Thread.MIN_PRIORITY);
+        numberGenerator2.setPriority(Thread.MAX_PRIORITY);
+        numberGenerator1.start();
+        numberGenerator2.start();
+
     }
 }
